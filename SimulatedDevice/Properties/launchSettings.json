@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "SimulatedDevice": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Topic": "adtData",
+        "ClientId": "SimulatedDevice",
+        "BootstrapServers": "localhost:9092"
+      }
+    }
+  }
+}

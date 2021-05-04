@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "KafkaToADTAdapter": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Topics": "adtData",
+        "BootstrapServers": "localhost:9092",
+        "GroupId": "adt"
+      }
+    }
+  }
+}
