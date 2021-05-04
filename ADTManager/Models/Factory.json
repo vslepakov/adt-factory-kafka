@@ -1,0 +1,57 @@
+    {
+        "@id": "dtmi:com:contoso:factory;1",
+        "@type": "Interface",
+        "displayName": "Factory",
+        "@context": "dtmi:dtdl:context;2",
+        "contents": [
+            {
+                "@type": "Property",
+                "name": "FactoryId",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "FactoryName",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "Country",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "ZipCode",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "GeoLocation",
+                "schema": {
+                    "@id": "dtmi:com:contoso:factory:GeoCoord;1",
+                    "@type": "Object",
+                    "fields": [
+                        {
+                            "@id": "dtmi:com:contoso:factory:GeoCoord:lat;1",
+                            "name": "Latitude",
+                            "schema": "double"
+                        },
+                        {
+                            "@id": "dtmi:com:contoso:factory:GeoCoord:lon;1",
+                            "name": "Longitude",
+                            "schema": "double"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Relationship",
+                "@id": "dtmi:com:contoso:factory:has_production_lines;1",
+                "name": "has_production_lines",
+                "displayName": "Has Production lines",
+                "target": "dtmi:com:contoso:factory:production_line;1"
+            }
+        ]
+    }

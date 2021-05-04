@@ -1,0 +1,32 @@
+{
+  "@id": "dtmi:com:contoso:factory:production_resource_plc;1",
+  "@type": "Interface",
+  "displayName": "PLC Resource",
+  "extends": "dtmi:com:contoso:factory:production_resource;1",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "CycleTime",
+      "schema": "double",
+      "writable": true
+    },
+    {
+      "@type": [ "Property", "Temperature" ],
+      "name": "AmbientTemperature",
+      "unit": "degreeCelsius",
+      "schema": "double"
+    },
+    {
+      "@type": [ "Property", "Humidity" ],
+      "name": "AmbientHumidity",
+      "unit": "gramPerCubicMetre",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "PieceNumber",
+      "schema": "integer"
+    }
+  ]
+}

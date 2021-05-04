@@ -1,0 +1,74 @@
+    {
+        "@id": "dtmi:com:contoso:factory:production_resource;1",
+        "@type": "Interface",
+        "displayName": "Prod Resource",
+        "@context": "dtmi:dtdl:context;2",
+        "contents": [
+            {
+                "@type": "Property",
+                "name": "PrId",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "PrName",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "Status",
+                "schema": "dtmi:com:contoso:factory:production_resource:status;1",
+                "writable": true
+            },
+            {
+                "@type": "Relationship",
+                "@id": "dtmi:com:contoso:factory:production_resource:previous_pr;1",
+                "name": "previous_pr",
+                "displayName": "Previous Production Resource",
+                "target": "dtmi:com:contoso:factory:production_resource;1",
+                "properties": [
+                    {
+                        "@type": "Property",
+                        "name": "status",
+                        "schema": "dtmi:com:contoso:factory:production_resource:status;1"
+                    }
+                ]
+            },
+            {
+                "@type": "Relationship",
+                "@id": "dtmi:com:contoso:factory:production_resource:next_pr;1",
+                "name": "next_pr",
+                "displayName": "Next Production Resource",
+                "target": "dtmi:com:contoso:factory:production_resource;1",
+                "properties": [
+                    {
+                        "@type": "Property",
+                        "name": "status",
+                        "schema": "dtmi:com:contoso:factory:production_resource:status;1"
+                    }
+                ]
+            }
+        ],
+        "schemas": {
+            "@id": "dtmi:com:contoso:factory:production_resource:status;1",
+            "@type": "Enum",
+            "valueSchema": "integer",
+            "enumValues": [
+                {
+                    "name": "ok",
+                    "displayName": "OK",
+                    "enumValue": 1
+                },
+                {
+                    "name": "warning",
+                    "displayName": "Warning",
+                    "enumValue": 2
+                },
+                {
+                    "name": "error",
+                    "displayName": "Error",
+                    "enumValue": 3
+                }
+            ]
+        }
+    }

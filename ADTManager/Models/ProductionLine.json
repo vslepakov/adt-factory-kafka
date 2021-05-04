@@ -1,0 +1,56 @@
+    {
+        "@id": "dtmi:com:contoso:factory:production_line;1",
+        "@type": "Interface",
+        "displayName": "Prod Line",
+        "@context": "dtmi:dtdl:context;2",
+        "contents": [
+            {
+                "@type": "Property",
+                "name": "LineId",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "LineName",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "CurrentProductId",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "LineOperationStatus",
+                "schema": "dtmi:com:contoso:factory:production_line:status;1",
+                "writable": true
+            },
+            {
+                "@type": "Relationship",
+                "@id": "dtmi:com:contoso:factory:production_line:contains_production_resource;1",
+                "name": "contains_production_resource",
+                "displayName": "Contains Production Resource",
+                "target": "dtmi:com:contoso:factory:production_resource;1"
+            }
+        ],
+        "schemas": {
+            "@id": "dtmi:com:contoso:factory:production_line:status;1",
+            "@type": "Enum",
+            "valueSchema": "integer",
+            "enumValues": [
+                {
+                    "name": "online",
+                    "displayName": "Online",
+                    "enumValue": 1
+                },
+                {
+                    "name": "offline",
+                    "displayName": "Offline",
+                    "enumValue": 2
+                }
+            ]
+        }
+    }
