@@ -1,0 +1,1 @@
+# adt-factory-kafka
