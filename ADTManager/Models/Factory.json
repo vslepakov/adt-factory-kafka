@@ -6,11 +6,6 @@
         "contents": [
             {
                 "@type": "Property",
-                "name": "FactoryId",
-                "schema": "string"
-            },
-            {
-                "@type": "Property",
                 "name": "FactoryName",
                 "schema": "string",
                 "writable": true
@@ -48,10 +43,10 @@
             },
             {
                 "@type": "Relationship",
-                "@id": "dtmi:com:contoso:factory:has_production_lines;1",
-                "name": "has_production_lines",
-                "displayName": "Has Production lines",
-                "target": "dtmi:com:contoso:factory:production_line;1"
+                "@id": "dtmi:com:contoso:factory:has_areas;1",
+                "name": "has_areas",
+                "displayName": "Has Areas",
+                "target": "dtmi:com:contoso:factory:factory_area;1"
             }
         ]
     }

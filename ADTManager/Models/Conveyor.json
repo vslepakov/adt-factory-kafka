@@ -1,0 +1,21 @@
+{
+  "@id": "dtmi:com:contoso:factory:conveyor;1",
+  "@type": "Interface",
+  "displayName": "Conveyor",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "ConveyorName",
+      "schema": "string",
+      "writable": true
+    },
+    {
+      "@type": "Relationship",
+      "@id": "dtmi:com:contoso:factory:conveyor:contains_production_resource;1",
+      "name": "contains_pr",
+      "displayName": "Contains Production Resource",
+      "target": "dtmi:com:contoso:factory:production_resource;1"
+    }
+  ]
+}
