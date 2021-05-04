@@ -6,12 +6,6 @@
   "contents": [
     {
       "@type": "Property",
-      "name": "LineId",
-      "schema": "string",
-      "writable": true
-    },
-    {
-      "@type": "Property",
       "name": "LineName",
       "schema": "string",
       "writable": true

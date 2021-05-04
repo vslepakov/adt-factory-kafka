@@ -2,7 +2,7 @@
   "@id": "dtmi:com:contoso:factory:production_resource_engine_transport;1",
   "@type": "Interface",
   "displayName": "Engine Transport",
-  "extends": "dtmi:com:contoso:factory:production_resource;1",
+  "extends": [ "dtmi:com:contoso:factory:production_resource;1" ],
   "@context": "dtmi:dtdl:context;2",
   "contents": [
     {

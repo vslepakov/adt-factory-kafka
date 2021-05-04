@@ -1,21 +1,21 @@
+{
+  "@id": "dtmi:com:contoso:factory:factory_area;1",
+  "@type": "Interface",
+  "displayName": "Factory Area",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
     {
-        "@id": "dtmi:com:contoso:factory:factory_area;1",
-        "@type": "Interface",
-        "displayName": "Factory Area",
-        "@context": "dtmi:dtdl:context;2",
-        "contents": [
-            {
-                "@type": "Property",
-                "name": "AreaName",
-                "schema": "string",
-                "writable": true
-            },
-            {
-                "@type": "Relationship",
-                "@id": "dtmi:com:contoso:factory:has_production_lines;1",
-                "name": "has_production_lines",
-                "displayName": "Has Production lines",
-                "target": "dtmi:com:contoso:factory:production_line;1"
-            }
-        ]
+      "@type": "Property",
+      "name": "AreaName",
+      "schema": "string",
+      "writable": true
+    },
+    {
+      "@type": "Relationship",
+      "@id": "dtmi:com:contoso:factory:factory_area:has_production_line;1",
+      "name": "has_production_line",
+      "displayName": "Has Production line",
+      "target": "dtmi:com:contoso:factory:production_line;1"
     }
+  ]
+}

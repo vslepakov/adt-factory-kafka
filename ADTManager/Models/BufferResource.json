@@ -1,20 +1,21 @@
+{
+  "@id": "dtmi:com:contoso:factory:production_resource_buffer_system;1",
+  "@type": "Interface",
+  "displayName": "Buffer System",
+  "extends": [ "dtmi:com:contoso:factory:production_resource;1" ],
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
     {
-        "@id": "dtmi:com:contoso:factory:production_resource_buffer_system;1",
-        "@type": "Interface",
-        "displayName": "Buffer System",
-        "extends": "dtmi:com:contoso:factory:production_resource;1",
-        "@context": "dtmi:dtdl:context;2",
-        "contents": [
-          {
-            "@type": "Property",
-            "name": "BufferLevel",
-            "schema": "integer"
-          },
-          {
-            "@type": "Property",
-            "name": "PieceNumber",
-            "schema": "integer",
-            "writable": true
-          }
-        ]
+      "@type": "Property",
+      "name": "BufferLevel",
+      "schema": "integer",
+      "writable": true
+    },
+    {
+      "@type": "Property",
+      "name": "PieceCount",
+      "schema": "integer",
+      "writable": true
     }
+  ]
+}

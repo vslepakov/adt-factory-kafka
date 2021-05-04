@@ -1,52 +1,50 @@
+{
+  "@id": "dtmi:com:contoso:factory;1",
+  "@type": "Interface",
+  "displayName": "Factory",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
     {
-        "@id": "dtmi:com:contoso:factory;1",
-        "@type": "Interface",
-        "displayName": "Factory",
-        "@context": "dtmi:dtdl:context;2",
-        "contents": [
-            {
-                "@type": "Property",
-                "name": "FactoryName",
-                "schema": "string",
-                "writable": true
-            },
-            {
-                "@type": "Property",
-                "name": "Country",
-                "schema": "string"
-            },
-            {
-                "@type": "Property",
-                "name": "ZipCode",
-                "schema": "string",
-                "writable": true
-            },
-            {
-                "@type": "Property",
-                "name": "GeoLocation",
-                "schema": {
-                    "@id": "dtmi:com:contoso:factory:GeoCoord;1",
-                    "@type": "Object",
-                    "fields": [
-                        {
-                            "@id": "dtmi:com:contoso:factory:GeoCoord:lat;1",
-                            "name": "Latitude",
-                            "schema": "double"
-                        },
-                        {
-                            "@id": "dtmi:com:contoso:factory:GeoCoord:lon;1",
-                            "name": "Longitude",
-                            "schema": "double"
-                        }
-                    ]
-                }
-            },
-            {
-                "@type": "Relationship",
-                "@id": "dtmi:com:contoso:factory:has_areas;1",
-                "name": "has_areas",
-                "displayName": "Has Areas",
-                "target": "dtmi:com:contoso:factory:factory_area;1"
-            }
+      "@type": "Property",
+      "name": "FactoryName",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Country",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "ZipCode",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "GeoLocation",
+      "schema": {
+        "@id": "dtmi:com:contoso:factory:GeoCoord;1",
+        "@type": "Object",
+        "fields": [
+          {
+            "@id": "dtmi:com:contoso:factory:GeoCoord:lat;1",
+            "name": "Latitude",
+            "schema": "double"
+          },
+          {
+            "@id": "dtmi:com:contoso:factory:GeoCoord:lon;1",
+            "name": "Longitude",
+            "schema": "double"
+          }
         ]
+      }
+    },
+    {
+      "@type": "Relationship",
+      "@id": "dtmi:com:contoso:factory:has_area;1",
+      "name": "has_area",
+      "displayName": "Has Area",
+      "target": "dtmi:com:contoso:factory:factory_area;1"
     }
+  ]
+}
