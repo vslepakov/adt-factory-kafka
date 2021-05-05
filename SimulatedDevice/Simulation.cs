@@ -84,7 +84,7 @@ namespace SimulatedDevice
                 };
 
                 var message = JsonConvert.SerializeObject(kpiMessage);
-                await _kafkaProducer.ProduceAsync(_config.ResourceStatusTopic, message);
+                await _kafkaProducer.ProduceAsync(_config.ResourceKpiTopic, message);
             }
         }
     }
