@@ -3,9 +3,12 @@
     "SimulatedDevice": {
       "commandName": "Project",
       "environmentVariables": {
-        "Topic": "adtData",
+        "StatusChangeIntervalInSeconds": "10",
+        "KpiTopic": "adtKpi",
+        "ResourceStatusTopic": "adtStatus",
         "ClientId": "SimulatedDevice",
-        "BootstrapServers": "localhost:9092"
+        "BootstrapServers": "localhost:9092",
+        "KpiChangeIntervalInSeconds": "5"
       }
     }
   }

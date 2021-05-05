@@ -26,6 +26,7 @@ namespace ADTManager
             _logger = logger;
         }
 
+        // Quick and dirty cuz one timer
         public async Task RunAsync()
         {
             await CreateTransportAsync();
@@ -47,7 +48,7 @@ namespace ADTManager
                 twinData.Metadata.ModelId = "dtmi:com:contoso:factory:production_resource_engine_transport;1";
                 var twinId = $"{TransportTwinIdPrefix}{i}";
 
-                twinData.Contents.Add("PrId", Guid.NewGuid().ToString());
+                twinData.Contents.Add("PrId", twinId);
                 twinData.Contents.Add("PrName", twinId);
                 twinData.Contents.Add("Status", 1);
                 twinData.Contents.Add("Speed", 10);
@@ -68,7 +69,7 @@ namespace ADTManager
                 twinData.Metadata.ModelId = "dtmi:com:contoso:factory:production_resource_buffer_system;1";
                 var twinId = $"{BufferTwinIdPrefix}{i}";
 
-                twinData.Contents.Add("PrId", Guid.NewGuid().ToString());
+                twinData.Contents.Add("PrId", twinId);
                 twinData.Contents.Add("PrName", twinId);
                 twinData.Contents.Add("Status", 1);
 

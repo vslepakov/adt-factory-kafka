@@ -4,7 +4,12 @@ using System.Threading.Tasks;
 
 namespace SimulatedDevice
 {
-    public class KafkaProducer
+    public interface IKafkaProducer
+    {
+        Task ProduceAsync(string topic, string message);
+    }
+
+    public class KafkaProducer : IKafkaProducer
     {
         private readonly ILogger _logger;
         private readonly ProducerConfig _config;

@@ -24,10 +24,18 @@ namespace SimulatedDevice
                 ClientId = Environment.GetEnvironmentVariable("ClientId")
             };
 
-            var topic = Environment.GetEnvironmentVariable("Topic");
-
             var kafkaProducer = new KafkaProducer(config, logger);
-            await kafkaProducer.ProduceAsync(topic, "Hello Kafka! First Message");
+
+            var simulationConfig = new SimulationConfig
+            {
+                KpiChangeIntervalInSeconds = int.Parse(Environment.GetEnvironmentVariable("KpiChangeIntervalInSeconds")),
+                StatusChangeIntervalInSeconds = int.Parse(Environment.GetEnvironmentVariable("StatusChangeIntervalInSeconds")),
+                ResourceKpiTopic = Environment.GetEnvironmentVariable("KpiTopic"),
+                ResourceStatusTopic = Environment.GetEnvironmentVariable("ResourceStatusTopic")
+            };
+
+            var simulation = new Simulation(simulationConfig, kafkaProducer, logger);
+            await simulation.RunAsync(cts.Token);
         }
     }
 }
