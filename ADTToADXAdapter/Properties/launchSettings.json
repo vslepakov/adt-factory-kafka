@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "ADTToADXAdapter": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "BlobStorageConnectionString": "",
+        "InEhConnectionString": "",
+        "InEhName": "",
+        "BlobContainerName": "",
+        "OutEhName": "",
+        "OutEhConnectionString": ""
+      }
+    }
+  }
+}
