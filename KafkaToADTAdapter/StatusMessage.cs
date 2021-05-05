@@ -1,13 +1,14 @@
-﻿namespace SimulatedDevice
+﻿namespace KafkaToADTAdapter
 {
     public enum ResourceStatus
     {
         Ok = 1,
-        Warning = 2,
-        Error = 3
+        Info = 2,
+        Warning = 3,
+        Error = 4
     }
 
-    public class ProdResourceStatus
+    public class StatusMessage
     {
         public string PrId { get; set; }
 

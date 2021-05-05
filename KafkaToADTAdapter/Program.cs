@@ -2,6 +2,8 @@
 using System.Runtime.Loader;
 using System.Threading;
 using System.Threading.Tasks;
+using Azure.DigitalTwins.Core;
+using Azure.Identity;
 using Confluent.Kafka;
 using Microsoft.Extensions.Logging;
 
@@ -27,11 +29,13 @@ namespace KafkaToADTAdapter
                 EnableAutoCommit = true
             };
 
-            var topics = Environment.GetEnvironmentVariable("Topics").Split(',');
+            var adtInstanceUrl = Environment.GetEnvironmentVariable("AdtInstanceUrl");
+            var credential = new DefaultAzureCredential();
+            var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), credential);
 
             var kafkaConsumer = new KafkaConsumer(config, logger);
-            kafkaConsumer.AddProcessor(new ADTDataProcessor(logger));
-            await kafkaConsumer.ConsumeAsync(topics, cts.Token);
+            kafkaConsumer.AddProcessor(new ADTDataProcessor(client, logger));
+            await kafkaConsumer.ConsumeAsync(TopicConfig.AllTopics, cts.Token);
         }
     }
 }

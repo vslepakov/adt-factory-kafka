@@ -7,6 +7,6 @@ namespace KafkaToADTAdapter
     {
         string Id { get; }
 
-        Task ProcessAsync(Message<Ignore, string> message);
+        Task ProcessAsync(string topic, Message<Ignore, string> message);
     }
 }

@@ -38,7 +38,6 @@ namespace SimulatedDevice
                 foreach (var pr in _config.ProdResources)
                 {
                     await SimulateKpisAsync(pr.PrId, _config.KpiSimulationConfigs.Where(config => config.PrType == pr.PrType));
-                    
                 }
 
                 await Task.Delay(_config.KpiChangeIntervalInSeconds * 1000);

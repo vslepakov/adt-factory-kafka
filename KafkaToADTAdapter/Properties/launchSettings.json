@@ -3,7 +3,9 @@
     "KafkaToADTAdapter": {
       "commandName": "Project",
       "environmentVariables": {
-        "Topics": "adtData",
+        "AdtInstanceUrl": "",
+        "KpiTopic": "adtKpi",
+        "ResourceStatusTopic": "adtStatus",
         "BootstrapServers": "localhost:9092",
         "GroupId": "adt"
       }

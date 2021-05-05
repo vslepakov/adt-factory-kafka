@@ -44,7 +44,7 @@ namespace KafkaToADTAdapter
 
                         foreach (var dataProcessor in _dataProcessors)
                         {
-                            tasks.Add(dataProcessor.Value.ProcessAsync(consumeResult.Message));
+                            tasks.Add(dataProcessor.Value.ProcessAsync(consumeResult.Topic, consumeResult.Message));
                         }
 
                         await Task.WhenAll(tasks);

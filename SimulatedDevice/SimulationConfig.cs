@@ -5,7 +5,7 @@ namespace SimulatedDevice
     public enum ProdResourceType
     {
         Buffer = 1,
-        Transport = 1
+        Transport = 2
     }
 
     public class ProdResource
