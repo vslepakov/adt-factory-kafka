@@ -162,11 +162,11 @@ namespace ADTManager
 
             twinData.Contents.Add("FactoryName", FactoryTwinId);
             twinData.Contents.Add("Country", "Germany");
-            twinData.Contents.Add("ZipCode", "80809");
+            twinData.Contents.Add("ZipCode", "80807");
             twinData.Contents.Add("GeoLocation", new 
             {
-                Latitude = 48.178716531624346,
-                Longitude = 11.557705942784049
+                Latitude = 50.1787166,
+                Longitude = 12.55770
             });
 
             await CreateOrReplaceTwinAsync(twinData);
