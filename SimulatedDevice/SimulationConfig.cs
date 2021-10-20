@@ -28,9 +28,9 @@ namespace SimulatedDevice
 
     public class SimulationConfig
     {
-        public string ResourceStatusTopic { get; set; }
+        public string ResourceStatusMessageType { get; set; }
 
-        public string ResourceKpiTopic { get; set; }
+        public string ResourceKpiMessageType { get; set; }
 
         public int StatusChangeIntervalInSeconds { get; set; }
 

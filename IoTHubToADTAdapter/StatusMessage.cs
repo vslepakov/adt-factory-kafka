@@ -1,4 +1,4 @@
-﻿namespace KafkaToADTAdapter
+﻿namespace IoTHubToADTAdapter
 {
     public enum ResourceStatus
     {

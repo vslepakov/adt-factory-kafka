@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KafkaToADTAdapter
+namespace IoTHubToADTAdapter
 {
     public class TwinData
     {

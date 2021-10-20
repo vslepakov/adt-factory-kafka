@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Azure.Devices.Client;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,13 +13,13 @@ namespace SimulatedDevice
     public class Simulation
     {
         private readonly SimulationConfig _config;
-        private readonly IKafkaProducer _kafkaProducer;
+        private readonly DeviceClient _deviceClient;
         private readonly ILogger _logger;
 
-        public Simulation(SimulationConfig config, IKafkaProducer kafkaProducer, ILogger logger)
+        public Simulation(SimulationConfig config, DeviceClient deviceClient, ILogger logger)
         {
             _config = config;
-            _kafkaProducer = kafkaProducer;
+            _deviceClient = deviceClient;
             _logger = logger;
         }
 
@@ -59,8 +61,18 @@ namespace SimulatedDevice
                         Status = (ResourceStatus)values.GetValue(random.Next(values.Length))
                     };
 
-                    var message = JsonConvert.SerializeObject(statusMessage);
-                    await _kafkaProducer.ProduceAsync(_config.ResourceStatusTopic, message);
+                    var payload = JsonConvert.SerializeObject(statusMessage);
+
+                    using var message = new Message(Encoding.UTF8.GetBytes(payload))
+                    {
+                        ContentEncoding = "utf-8",
+                        ContentType = "application/json",
+                    };
+
+                    message.Properties.Add("MessageType", _config.ResourceStatusMessageType);
+
+                    _logger.LogInformation($"Publishing message of type {_config.ResourceStatusMessageType} to IoT Hub");
+                    await _deviceClient.SendEventAsync(message);
                 }
 
                 await Task.Delay(_config.StatusChangeIntervalInSeconds * 1000);
@@ -82,8 +94,18 @@ namespace SimulatedDevice
                     Value = kpiValue
                 };
 
-                var message = JsonConvert.SerializeObject(kpiMessage);
-                await _kafkaProducer.ProduceAsync(_config.ResourceKpiTopic, message);
+                var payload = JsonConvert.SerializeObject(kpiMessage);
+
+                using var message = new Message(Encoding.UTF8.GetBytes(payload))
+                {
+                    ContentEncoding = "utf-8",
+                    ContentType = "application/json",
+                };
+
+                message.Properties.Add("MessageType", _config.ResourceKpiMessageType);
+
+                _logger.LogInformation($"Publishing message of type {_config.ResourceKpiMessageType} to IoT Hub");
+                await _deviceClient.SendEventAsync(message);
             }
         }
     }

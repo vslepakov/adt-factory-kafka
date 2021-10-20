@@ -1,4 +1,4 @@
-﻿using Confluent.Kafka;
+﻿using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Runtime.Loader;
@@ -18,23 +18,19 @@ namespace SimulatedDevice
             AssemblyLoadContext.Default.Unloading += (ctx) => cts.Cancel();
             Console.CancelKeyPress += (sender, cpe) => cts.Cancel();
 
-            var config = new ProducerConfig
-            {
-                BootstrapServers = Environment.GetEnvironmentVariable("BootstrapServers"),
-                ClientId = Environment.GetEnvironmentVariable("ClientId")
-            };
-
-            var kafkaProducer = new KafkaProducer(config, logger);
+            var deviceConnectionString = Environment.GetEnvironmentVariable("IoTHubConnectionString");
 
             var simulationConfig = new SimulationConfig
             {
                 KpiChangeIntervalInSeconds = int.Parse(Environment.GetEnvironmentVariable("KpiChangeIntervalInSeconds")),
                 StatusChangeIntervalInSeconds = int.Parse(Environment.GetEnvironmentVariable("StatusChangeIntervalInSeconds")),
-                ResourceKpiTopic = Environment.GetEnvironmentVariable("KpiTopic"),
-                ResourceStatusTopic = Environment.GetEnvironmentVariable("ResourceStatusTopic")
+                ResourceKpiMessageType = Environment.GetEnvironmentVariable("KpiMessageType"),
+                ResourceStatusMessageType = Environment.GetEnvironmentVariable("ResourceStatusMessageType")
             };
 
-            var simulation = new Simulation(simulationConfig, kafkaProducer, logger);
+
+            using var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Mqtt);
+            var simulation = new Simulation(simulationConfig, deviceClient, logger);
             await simulation.RunAsync(cts.Token);
         }
     }

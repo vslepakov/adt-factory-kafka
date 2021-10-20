@@ -1,18 +1,18 @@
-﻿using Confluent.Kafka;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Azure.DigitalTwins.Core;
 using Newtonsoft.Json;
 using Azure;
+using Microsoft.Azure.EventHubs;
+using System.Text;
 
-namespace KafkaToADTAdapter
+namespace IoTHubToADTAdapter
 {
-    public class ADTDataProcessor : IKafkaDataProcessor
+    public class ADTDataProcessor
     {
+        private const string MESSAGE_TYPE_PROPERTY_NAME = "MessageType";
         private readonly DigitalTwinsClient _client;
         private readonly ILogger _logger;
-
-        public string Id => "ADTDataProcessor";
 
         public ADTDataProcessor(DigitalTwinsClient client, ILogger logger)
         {
@@ -20,21 +20,26 @@ namespace KafkaToADTAdapter
             _logger = logger;
         }
 
-        public async Task ProcessAsync(string topic, Message<Ignore, string> message)
+        public async Task ProcessAsync(EventData message)
         {
             _logger.LogInformation("Handling ADT Update");
 
-            if(topic == TopicConfig.StatusTopic)
+            var messageAsString = Encoding.UTF8.GetString(message.Body.Array);
+
+            if (message.Properties.TryGetTypedValue(MESSAGE_TYPE_PROPERTY_NAME, out string messageType))
             {
-                await HandleStatusMessageAsync(message.Value);
-            }
-            else if(topic == TopicConfig.KpiTopic)
-            {
-                await HandleKpiMessageAsync(message.Value);
+                if (messageType == MessageTypes.Status)
+                {
+                    await HandleStatusMessageAsync(messageAsString);
+                }
+                else if (messageType == MessageTypes.Kpi)
+                {
+                    await HandleKpiMessageAsync(messageAsString);
+                }
             }
             else
             {
-                _logger.LogWarning($"Received message on an unknown topic {topic}: {message.Value}");
+                _logger.LogWarning($"Received message of an unknown type {messageType}: {messageAsString}");
             }
         }
 
